@@ -30,7 +30,12 @@
     </nav>
     <div class="container">
         <h1>Read Together</h1><br>
-        <h2>Upload Book here</h2><br><br>
+        <h2>Upload Book here</h2>
+        <form action = "/book" method = "post" enctype="multipart/form-data">   
+          <input type="file" name="file" />   
+          <input type = "submit" value="Upload">   
+      </form> 
+        <br><br>
         <h2>Shelf</h2>
         <p>Click a book cover to read that book</p>
     </div>
