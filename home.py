@@ -1,10 +1,19 @@
-from flask import Flask
+from flask import Flask, redirect, url_for
 
-app = Flask(_main_)
+app = Flask(__name__)
 
 @app.route("/")
 def home():
     return "<h1>Welcome to NookVerse</h1>"
 
-if _name_ == "_main_":
+@app.route("/<name>")
+def user(name):
+    return f"Hello {name}!"
+
+@app.route("/admin")
+def admin():
+    # redirect back to home page
+    return redirect(url_for("home")) # function name goes inside of url_for()
+
+if __name__ == "__main__":
     app.run()
