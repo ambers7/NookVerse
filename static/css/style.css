@@ -1,0 +1,13 @@
+h1 {
+    border: 2px #eee solid;
+    color: brown;
+    text-align: center;
+    padding: 10px; 
+    font-size: 2.5em;  
+}
+h2 {
+    font-size: 1.875em;
+}
+p {
+    font-size: 0.875em;
+}

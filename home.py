@@ -1,19 +1,54 @@
-from flask import Flask, redirect, url_for
+# pip install flask
+# pip install flask-WTF
+
+
+# set FLASK_APP=home.py
+# $env:FLASK_APP = "home.py"
+# flask run
+
+from flask import Flask, render_template, flash, request, redirect, url_for
+from flask_wtf import FlaskForm
+from fileinput import filename 
+from wtforms import FileField, SubmitField
+from wtforms.validators import InputRequired
+from werkzeug.utils import secure_filename
+import os
+
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'supersecretkey'
+app.config['UPLOAD_FOLDER'] = 'static/files'
 
-@app.route("/")
+# class UploadFileForm(FlaskForm):
+#     file = FileField("File", validators=[InputRequired()])
+#     submit = SubmitField("Upload File")
+
+@app.route("/",methods=['GET','POST'])
 def home():
-    return "<h1>Welcome to NookVerse</h1>"
+    return render_template('home.html')
 
-@app.route("/<name>")
-def user(name):
-    return f"Hello {name}!"
+@app.route('/login')
+def login():
+    return render_template('login.html')
 
-@app.route("/admin")
-def admin():
-    # redirect back to home page
-    return redirect(url_for("home")) # function name goes inside of url_for()
+@app.route('/book_bubble')
+def book_bubble():
+    return render_template('book_bubble.html')
+    
+@app.route('/book', methods = ['POST'])   
+def book():   
+    if request.method == 'POST':   
+        f = request.files['file'] 
+        f.save(os.path.join(os.path.dirname(os.path.abspath(__file__)),app.config['UPLOAD_FOLDER'],secure_filename(f.filename)))
+        return render_template("book.html", name = f.filename)   
 
-if __name__ == "__main__":
+@app.route('/read_together', methods=['GET',"POST"])
+def read_together():
+    return render_template('read_together.html')
+
+@app.route('/see_data')
+def see_data():
+    return render_template('see_data.html')
+
+if __name__ == "_main_":
     app.run()
