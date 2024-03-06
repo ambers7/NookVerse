@@ -9,7 +9,7 @@ After cloning the repo, follow the instructions below to run NookVerse
 2. Inside the NookVerse folder in your terminal \
   For Windows:\
    ``set FLASK_APP=home.py`` \
-   ``$env:FLASK_APP = home.py``
+   ``$env:FLASK_APP = home.py``\
    For Macs/Linux:\
    ``set FLASK_APP=home.py`` \
    ``export FLASK_APP=home.py``
