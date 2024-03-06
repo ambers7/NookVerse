@@ -1,3 +1,4 @@
+import java.util.array;
 /*
   Title
   Authors
@@ -39,5 +40,34 @@ public class Book{
     this.isbn = isbn;
     this.status = status;
     this.rating = rating;
+  }
+
+  //Accessor Methods
+  public String title(){
+    return title;
+  }
+
+  public String[] authors(){
+    return authors;
+  }
+
+  public String[] contributors(){
+    return contributors;
+  }
+
+  public long isbn(){
+    return isbn;
+  }
+
+  public int status(){
+    return status;
+  }
+
+  public float rating(){
+    return rating;
+  }
+
+  public toString(){
+
   }
 }
