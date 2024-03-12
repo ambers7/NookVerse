@@ -12,7 +12,8 @@
 
 import pyrebase
 
-from flask import Flask, render_template, flash, request, redirect, url_for
+from flask import Flask, session, render_template, flash, request, redirect, url_for
+from flask_session import Session
 from flask_wtf import FlaskForm
 from fileinput import filename 
 from wtforms import FileField, SubmitField
@@ -20,8 +21,8 @@ from wtforms.validators import InputRequired
 from werkzeug.utils import secure_filename
 import os
 
-import { initializeApp } from "firebase/app";
-import { getDatabase } from "firebase/database";
+#import { initializeApp } from "firebase/app";
+#import { getDatabase } from "firebase/database";
 
 config = {
     'apiKey': "AIzaSyBkHzS3hze-aUnLhmZIHkhdSR3rhxC_-PA",
@@ -33,8 +34,6 @@ config = {
     'measurementId': "G-L8XKX841Q3",
     'databaseURL': "https://console.firebase.google.com/u/0/project/nookverse-11997/database/nookverse-11997-default-rtdb/data/~2F"
 }
-
-
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'supersecretkey'
@@ -48,6 +47,7 @@ app.config['UPLOAD_FOLDER'] = 'static/files'
 firebase = pyrebase.initialize_app(config)
 auth = firebase.auth()
 db = firebase.database()
+#db = getDatabase(firebase)
 storage=firebase.storage()
 
 #Initialze person as dictionary
@@ -56,21 +56,6 @@ person = {"is_logged_in": False, "name": "", "email": "", "uid": ""}
 @app.route("/",methods=['GET','POST'])
 def home():
     return render_template('home.html')
-
-@app.route('/login')
-def login():
-    return render_template('login.html')
-
-@app.route("/signup")
-def signup():
-    return render_template("signup.html")
-
-@app.route("/account")
-def account():
-    if person["is_logged_in"]==True:
-        return render_template("account.html", email=person["email"], name=person["name"])
-    else:
-        return redirect(url_for('login'))
 
 @app.route('/book_bubble')
 def book_bubble():
@@ -91,69 +76,56 @@ def read_together():
 def see_data():
     return render_template('see_data.html')
 
-# click login
-@app.route("/result", methods = ["POST", "GET"])
-def result():
-    if request.method == "POST":        #Only if data has been posted
-        result = request.form           #Get the data
-        email = result["email"]
-        password = result["pass"]
+@app.route('/login', methods=["POST", "GET"])
+def login():
+    message = ""
+    if "user" in session:
+        return redirect(url_for('account'))
+    if request.method == "POST":
+        name = request.form.get("name")
+        email = request.form.get('email')
+        password = request.form.get('password')
         try:
-            #Try signing in the user with the given information
             user = auth.sign_in_with_email_and_password(email, password)
-            #Insert the user data in the global person
-            global person
-            person["is_logged_in"] = True
-            person["email"] = user["email"]
-            person["uid"] = user["localId"]
-            #Get the name of the user
-            data = db.child("users").get()
-            person["name"] = data.val()[person["uid"]]["name"]
+            session["user"] = name
+            session["is_logged_in"] = True
+            #user = auth.refresh(user['refreshToken'])
+            #user_id = user['idToken']
             return redirect(url_for('account'))
         except:
-            #If there is any error, redirect back to login
-            return redirect(url_for('login'))
-    else:
-        if person["is_logged_in"] == True:
-            return redirect(url_for('account'))
-        else:
-            return redirect(url_for('login'))
+            message = "Incorrect email and/or password!"
+    return render_template("login.html",message=message)
 
-# click register
-@app.route("/register", methods = ["POST", "GET"])
-def register():
-    if request.method == "POST":        #Only listen to POST
-        result = request.form           #Get the data submitted
-        email = result["email"]
-        password = result["pass"]
-        name = result["name"]
+@app.route("/signup", methods=["POST", "GET"])
+def signup():
+    message = ""
+    if "user" in session:
+        return redirect(url_for('account'))
+    if request.method == "POST":         
+        email = request.form.get("email")
+        password = request.form.get("password")
+        name = request.form.get("name")
         try:
-            #Try creating the user account using the provided data
             auth.create_user_with_email_and_password(email, password)
-            #Login the user
             user = auth.sign_in_with_email_and_password(email, password)
-            #Add data to global person
-            global person
-            person["is_logged_in"] = True
-            person["email"] = user["email"]
-            person["uid"] = user["localId"]
-            person["name"] = name
-            #Append data to the firebase realtime database
-            data = {"name": name, "email": email}
-            db.child("users").child(person["uid"]).set(data)
-            #Go to welcome page
+            session["user"] = name
             return redirect(url_for('account'))
         except:
-            #If there is any error, redirect to register
-            return redirect(url_for('signup'))
+            message = "Failed to create account!"
+    return render_template("signup.html",message=message)
 
-    else:
-        if person["is_logged_in"] == True:
-            return redirect(url_for('account'))
-        else:
-            return redirect(url_for('signup'))
-
-
+@app.route('/account')
+def account():
+    if "user" in session:
+        return render_template("account.html",name=session["user"])
+    return redirect(url_for('login'))
+    
+@app.route('/logout')
+def logout():
+    if "user" in session:
+        session.pop("user")
+        auth.current_user = None
+    return redirect('/login')
 
 if __name__ == "_main_":
     app.run()

@@ -1,30 +1,24 @@
-{% extends 'base.html' %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-{% block content %}
-    <h1>{% block title %} Login Page {% endblock %}</h1>
-    <div class="wrapper fadeInDown">
-    <div id="formContent">
-      <!-- Tabs Titles -->
-      <h2 class="active"> Sign In </h2>
-      <a href="http://127.0.0.1:5000/signup"><h2 class="inactive underlineHover">Sign Up </h2></a>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  </head>
+  <body>
+    <div class="wrapper">
+      <div id="content">
+        <h2 class="active">Sign In</h2>
+        <a href="http://127.0.0.1:5000/signup"><h2>Sign Up</h2></a>
 
-      <!-- Icon -->
-      <div class="fadeIn first">
-        <!--<img src="{{ url_for('static', filename = 'user.png') }}" id="icon" alt="User Icon" />-->
+        <form action="http://127.0.0.1:5000/login" method="POST">
+          <input type="text" id="name" name="name" placeholder="name"><br>
+          <input type="email" id="login" name="email" placeholder="email"><br>
+          <input type="password" id="password" name="password" placeholder="password"><br>
+          <input type="submit" value="Log In">
+        </form>
       </div>
-
-      <!-- Login Form -->
-      <form action="http://127.0.0.1:5000/result" method="POST">
-        <input type="email" id="login" class="fadeIn second" name="email" placeholder="email">
-        <input type="password" id="password" class="fadeIn third" name="pass" placeholder="password">
-        <input type="submit" class="fadeIn fourth" value="Log In">
-      </form>
-  <!-- 
-    Will add in future
-      <div id="formFooter">
-        <a class="underlineHover" href="#">Forgot Password?</a>
-      </div>
-  -->
     </div>
-  </div>
-{% endblock %}
+  </body>
+</html>
