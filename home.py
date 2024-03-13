@@ -46,9 +46,16 @@ def book():
 def read_together():
     return render_template('read_together.html')
 
-@app.route('/see_data')
+@app.route('/see_data', methods = ['POST'])
 def see_data():
-    return render_template('see_data.html')
+    if request.method == 'POST':   
+        f = request.files['file'] 
+        f.save(os.path.join(os.path.dirname(os.path.abspath(__file__)),app.config['UPLOAD_FOLDER'],secure_filename(f.filename)))
+        return render_template("see_data.html", name=f.filename)
+
+@app.route('/upload_data',methods=['GET','POST'])
+def upload_data():
+    return render_template("upload_data.html")
 
 if __name__ == "_main_":
     app.run()
