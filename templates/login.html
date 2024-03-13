@@ -1,5 +1,24 @@
-{% extends 'base.html' %}
-    {% block title %} Login Page {% endblock %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-{% block content %}
-{% endblock %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  </head>
+  <body>
+    <div class="wrapper">
+      <div id="content">
+        <h2 class="active">Sign In</h2>
+        <a href="http://127.0.0.1:5000/signup"><h2>Sign Up</h2></a>
+
+        <form action="http://127.0.0.1:5000/login" method="POST">
+          <input type="text" id="name" name="name" placeholder="name"><br>
+          <input type="email" id="login" name="email" placeholder="email"><br>
+          <input type="password" id="password" name="password" placeholder="password"><br>
+          <input type="submit" value="Log In">
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
