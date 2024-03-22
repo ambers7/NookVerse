@@ -17,7 +17,8 @@ import os
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'supersecretkey'
-app.config['UPLOAD_FOLDER'] = 'static/files'
+app.config['UPLOAD_FOLDER_PDF'] = 'static/files/pdf'
+app.config['UPLOAD_FOLDER_CSV'] = 'static/files/csv'
 
 # class UploadFileForm(FlaskForm):
 #     file = FileField("File", validators=[InputRequired()])
@@ -39,7 +40,7 @@ def book_bubble():
 def book():   
     if request.method == 'POST':   
         f = request.files['file'] 
-        f.save(os.path.join(os.path.dirname(os.path.abspath(__file__)),app.config['UPLOAD_FOLDER'],secure_filename(f.filename)))
+        f.save(os.path.join(os.path.dirname(os.path.abspath(__file__)),app.config['UPLOAD_FOLDER_PDF'],secure_filename(f.filename)))
         return render_template("book.html", name = f.filename)   
 
 @app.route('/read_together', methods=['GET',"POST"])
@@ -50,7 +51,7 @@ def read_together():
 def see_data():
     if request.method == 'POST':   
         f = request.files['file'] 
-        f.save(os.path.join(os.path.dirname(os.path.abspath(__file__)),app.config['UPLOAD_FOLDER'],secure_filename(f.filename)))
+        f.save(os.path.join(os.path.dirname(os.path.abspath(__file__)),app.config['UPLOAD_FOLDER_CSV'],secure_filename(f.filename)))
         return render_template("see_data.html", name=f.filename)
 
 @app.route('/upload_data',methods=['GET','POST'])
