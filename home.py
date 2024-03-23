@@ -47,6 +47,10 @@ def book():
 def read_together():
     return render_template('read_together.html')
 
+@app.route('/test_readpdf')
+def test_readpdf():
+    return render_template('test_readpdf.html')
+
 @app.route('/see_data', methods = ['POST'])
 def see_data():
     if request.method == 'POST':   
