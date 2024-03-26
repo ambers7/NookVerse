@@ -10,6 +10,7 @@ public class Driver{
     }
     */
     Bookshelf milk = new Bookshelf("milk");
+    Bookshelf amber = new Bookshelf("amber");
     Book TheIdiot = new Book("The Idiot", new String[]{"Elif Batuman"}, 9780143111061L, 1, 4);
     Book pjo1 = new Book("The Lightning Thief", new String[]{"Rick Riordan"}, 1223212, 0, 0);
     Book pjo2 = new Book("The Sea of Monsters", new String[]{"Rick Riordan"}, 1134324, 0, 0);
@@ -22,21 +23,22 @@ public class Driver{
     milk.addBook(pjo1);
     milk.addBook(pjo2);
     milk.removeBook(1223212); //removes lightning thief
-    milk.addBook(pjo3);
-    milk.addBook(pjo4);
     milk.removeBook(13542543); //does nothing
     milk.addBook(pjo5);
     milk.addBook(pjo5);
     milk.addBook(NookVerse);
     milk.addBook(pjo5);
     milk.addBook(pjo5);
-    System.out.println(milk.booklist().get(0));
-    System.out.println(milk.booklist().get(1));
-    System.out.println(milk.booklist().get(2));
-    System.out.println(milk.booklist().get(3));
-    System.out.println(milk.booklist().get(4));
-    System.out.println(milk.booklist().get(5));
-    System.out.println();
     System.out.println(milk.toString());
+
+    amber.addBook(pjo5);
+    amber.addBook(pjo3);
+    amber.addBook(pjo4);
+    amber.addBook(NookVerse);
+    System.out.println(amber.toString());
+
+    Bubble am = new Bubble(milk);
+    am.addUser(amber);
+    System.out.println(am.toString());
   }
 }
