@@ -20,14 +20,20 @@ public class Driver{
     milk.addBook(TheIdiot);
     milk.addBook(pjo1);
     milk.addBook(pjo2);
+    milk.removeBook(1223212); //removes lightning thief
     milk.addBook(pjo3);
     milk.addBook(pjo4);
+    milk.removeBook(13542543); //does nothing
     milk.addBook(pjo5);
+    milk.addBook(pjo5);
+    milk.addBook(pjo5);
+    milk.addBook(pjo5);
+    milk.addBook(pjo5); 
     System.out.println(milk.booklist().get(0));
     System.out.println(milk.booklist().get(1));
     System.out.println(milk.booklist().get(2));
     System.out.println(milk.booklist().get(3));
     System.out.println(milk.booklist().get(4));
-    System.out.println(milk.booklist().get(5));
+    //System.out.println(milk.booklist().get(5));
   }
 }

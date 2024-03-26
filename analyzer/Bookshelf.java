@@ -38,9 +38,16 @@ public class Bookshelf{
     return false;
   }
 
-/*
+
   public Book removeBook(long isbn){
-    return NULL;
+    for (int i = 0; i < booklist.size(); i++){
+      if (booklist.get(i).isbn()==isbn){
+        Book b = booklist.get(i);
+        booklist.remove(i);
+        return b;
+      }
+    }
+    return null;
   }
-  */
+
 }
