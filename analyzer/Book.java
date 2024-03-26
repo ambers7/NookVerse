@@ -1,4 +1,4 @@
-import java.util.array;
+import java.util.Arrays;
 /*
   Title
   Authors
@@ -29,7 +29,7 @@ public class Book{
   private String title;
   private String[] authors, contributors;
   private long isbn;
-  private int status; //true if read, false if to read
+  private int status; //1 if read, 0 if to read
   private float rating;
 
   //Constructor
@@ -67,7 +67,22 @@ public class Book{
     return rating;
   }
 
-  public toString(){
 
+  public String toString(){
+    String s = title + " by ";
+    for (int i = 0; i < authors.length; i++){
+      s+= authors[i]+", ";
+    }
+    s+="["+isbn+", ";
+    if (status==0){
+      s+="to read";
+    } else if (status==1){
+      s+="read";
+    } else{
+      s+="???";
+    }
+    s+=", "+ rating+"]";
+    return s;
   }
+
 }
