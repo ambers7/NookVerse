@@ -2,7 +2,7 @@ import java.util.Arrays;
 /*
   Title
   Authors
-  Contributors
+      Contributors
   ISBN/UID
       Format
   Read Status
@@ -27,16 +27,15 @@ import java.util.Arrays;
 
 public class Book{
   private String title;
-  private String[] authors, contributors;
+  private String[] authors;
   private long isbn;
   private int status; //1 if read, 0 if to read
   private float rating;
 
   //Constructor
-  public Book(String title, String[] authors, String[] contributors, long isbn, int status, float rating){
+  public Book(String title, String[] authors, long isbn, int status, float rating){
     this.title = title;
     this.authors = authors;
-    this.contributors = contributors;
     this.isbn = isbn;
     this.status = status;
     this.rating = rating;
@@ -49,10 +48,6 @@ public class Book{
 
   public String[] authors(){
     return authors;
-  }
-
-  public String[] contributors(){
-    return contributors;
   }
 
   public long isbn(){
@@ -84,5 +79,12 @@ public class Book{
     s+=", "+ rating+"]";
     return s;
   }
-
+  //+ if this book is second, - if this book is first, 0 if they are identical
+  public int compare(Book book){
+    if(authors[0].compareTo(book.authors[0])!=0){
+      return authors()[0].compareTo(book.authors()[0]);
+    } else{
+      return title().compareTo(book.title());
+    }
+  }
 }
