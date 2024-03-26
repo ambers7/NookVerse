@@ -16,6 +16,7 @@ public class Driver{
     Book pjo3 = new Book("The Titan's Curse", new String[]{"Rick Riordan"}, 11143241, 1, 3);
     Book pjo4 = new Book("The Battle of the Labyrinth", new String[]{"Rick Riordan"}, 542134, 1, 4.5);
     Book pjo5 = new Book("The Last Olympian", new String[]{"Rick Riordan"}, 13542543, 1, 5);
+    Book NookVerse = new Book("NookVerse", new String[]{"Amber Shen", "Mikayla Lin", "Mary Lee"}, 132432435, 1, 1);
 
     milk.addBook(TheIdiot);
     milk.addBook(pjo1);
@@ -26,14 +27,16 @@ public class Driver{
     milk.removeBook(13542543); //does nothing
     milk.addBook(pjo5);
     milk.addBook(pjo5);
+    milk.addBook(NookVerse);
     milk.addBook(pjo5);
     milk.addBook(pjo5);
-    milk.addBook(pjo5); 
     System.out.println(milk.booklist().get(0));
     System.out.println(milk.booklist().get(1));
     System.out.println(milk.booklist().get(2));
     System.out.println(milk.booklist().get(3));
     System.out.println(milk.booklist().get(4));
-    //System.out.println(milk.booklist().get(5));
+    System.out.println(milk.booklist().get(5));
+    System.out.println();
+    System.out.println(milk.toString());
   }
 }

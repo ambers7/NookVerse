@@ -50,4 +50,11 @@ public class Bookshelf{
     return null;
   }
 
+  public String toString(){
+    String s = username()+"'s Bookshelf\n";
+    for(Book i: booklist){
+      s+=i.toString()+"\n";
+    }
+    return s;
+  }
 }
