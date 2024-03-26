@@ -72,11 +72,20 @@ public class Book{
     if (status==0){
       s+="to read";
     } else if (status==1){
-      s+="read";
+      s+="read"+", "+ rating;
     } else{
       s+="???";
     }
-    s+=", "+ rating+"]";
+    s+="]";
+    return s;
+  }
+
+  public String toStringBasic(){
+    String s = title + " by ";
+    for (int i = 0; i < authors.length; i++){
+      s+= authors[i]+", ";
+    }
+    s= s.substring(0, s.length()-2);
     return s;
   }
   //+ if this book is second, - if this book is first, 0 if they are identical

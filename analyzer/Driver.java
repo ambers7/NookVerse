@@ -18,6 +18,7 @@ public class Driver{
     Book pjo4 = new Book("The Battle of the Labyrinth", new String[]{"Rick Riordan"}, 542134, 1, 4.5);
     Book pjo5 = new Book("The Last Olympian", new String[]{"Rick Riordan"}, 13542543, 1, 5);
     Book NookVerse = new Book("NookVerse", new String[]{"Amber Shen", "Mikayla Lin", "Mary Lee"}, 132432435, 1, 1);
+    Book TheStranger = new Book("The Stranger", new String[]{"Albert Camus"}, 124324241, 0, 0);
 
     milk.addBook(TheIdiot);
     milk.addBook(pjo1);
@@ -28,13 +29,14 @@ public class Driver{
     milk.addBook(pjo5);
     milk.addBook(NookVerse);
     milk.addBook(pjo5);
-    milk.addBook(pjo5);
+    milk.addBook(TheStranger);
     System.out.println(milk.toString());
 
     amber.addBook(pjo5);
     amber.addBook(pjo3);
     amber.addBook(pjo4);
     amber.addBook(NookVerse);
+    amber.addBook(TheStranger);
     System.out.println(amber.toString());
 
     Bubble am = new Bubble(milk);
