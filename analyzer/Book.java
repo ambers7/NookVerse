@@ -30,10 +30,10 @@ public class Book{
   private String[] authors;
   private long isbn;
   private int status; //1 if read, 0 if to read
-  private float rating;
+  private double rating;
 
   //Constructor
-  public Book(String title, String[] authors, long isbn, int status, float rating){
+  public Book(String title, String[] authors, long isbn, int status, double rating){
     this.title = title;
     this.authors = authors;
     this.isbn = isbn;
@@ -58,7 +58,7 @@ public class Book{
     return status;
   }
 
-  public float rating(){
+  public double rating(){
     return rating;
   }
 
