@@ -19,12 +19,11 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
             <li class="nav-item active">
-                <a class="nav-link" href="{{url_for('login')}}">Login</a>
-                <a class="nav-link" href="{{url_for('signup')}}">Sign Up</a>
-                <a class="nav-link" href="{{url_for('account')}}">Account</a>
+                <a class="nav-link" href="{{url_for('logout')}}">Logout</a>
+                <a class="nav-link" href="{{url_for('home')}}">Home</a>
                 <a class="nav-link" href="{{url_for('book_bubble')}}">Book Bubble</a>
+                <a class="nav-link" href="{{url_for('see_data')}}">See Data</a>
                 <a class="nav-link" href="{{url_for('read_together')}}">Read Together</a>
-                <a class="nav-link" href="{{url_for('upload_data')}}">Upload Data</a>
             </li>
             </ul>
         </div>
@@ -32,6 +31,9 @@
     <div class="container">
         {% block content %} {% endblock %}
     </div>
+	<div class="main">
+		<h1 class="name">Hi, {{name}}</h1><hr style="width: 30%">
+	</div>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -40,3 +42,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   </body>
 </html>
+
+
+
+
