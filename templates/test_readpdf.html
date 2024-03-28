@@ -23,7 +23,9 @@
         <h1>Testing</h1>
 		<canvas id="pdf"></canvas>
 		
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.4.456/pdf.js"></script>
-        <script src="pdfviewer.js"></script>
+		<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.4.456/pdf.js"></script> -->
+        <!-- <script src="pdfviewer.js"></script> -->
+		<script src="{{ url_for('static', filename='js/pdf.js') }}" type="module"></script>
+		<script src="{{ url_for('static', filename='js/pdfviewer.js') }}" type="module"></script>
 	</body>
 </html>

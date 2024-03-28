@@ -1,6 +1,6 @@
 // simple.js
-console.log("Testttt");
-var loadingTask = PDFJS.getDocument('/test.pdf');
+// var pdfjsLib = window['/pdf'];
+var loadingTask = pdfjsLib.getDocument('/test.pdf');
 loadingTask.promise.then(
 	function (pdf) {
 		// Load information from the first page.
